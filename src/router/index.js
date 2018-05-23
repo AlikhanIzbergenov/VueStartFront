@@ -4,8 +4,11 @@ import AppAdmin from '@/components/admin/Admin'
 import AppAdminProfile from '@/components/admin/Profile'
 
 import AppContent from '@/components/content/Content'
-import example from '@/components/content/Example'
 
+
+
+import AppLogin from '@/components/system/Login'
+import AppRegist from '@/components/system/Regist'
 
 Vue.use(Router)
 
@@ -17,7 +20,6 @@ export default new Router({
       component: AppAdmin,
       children: [
         {
-         
           path: '/profile',
           component: AppAdminProfile
         },
@@ -29,11 +31,16 @@ export default new Router({
       component: AppContent,
       children: [
         {
-          path: '/example',
-          component: example
-        }
-       
+          path: '/login',
+          component: AppLogin
+        },
+        {
+          path: '/regist',
+          component: AppRegist
+        },
+        
       ]
+      
     }
     
   ]

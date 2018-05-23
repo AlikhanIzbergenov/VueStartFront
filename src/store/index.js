@@ -24,7 +24,8 @@ import settings from './settings'
       getters:{
         getDrawer(state){
           return state.drawer;
-        }
+        },
+        
       },
       mutations: {
         changeDrawer(state){

@@ -1,7 +1,17 @@
-import Api from "@/services/Api"
+import Api from "./Api";
 
-export default {
-    regist(info){
-        return Api.post('/login',info)
-    }
+
+function register(data){
+    Api.post("/system/login",data)
+    .then(function(response){
+        alert(response);
+    })
+    .catch(function(error){
+        alert(error)
+    })
+
+}
+
+export {
+    
 }

@@ -6,22 +6,19 @@
 
 
 <script>
-import auth from "@/services/auth";
+
+   
+
+
+  
+
 
 import {mapGetters} from 'vuex'
 
 export default {
   created(){
-    auth.regist({
-      email : "aaa",
-      password : "bbb"
-      })
-      .then(function(response){ 
-        console.log(response.data); 
-      }).catch(function(err){
-
-      });
-  },
+  
+  }
   
 
 
