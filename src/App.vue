@@ -6,23 +6,14 @@
 
 
 <script>
+    import {
+        mapGetters
+    } from 'vuex'
 
-   
+    export default {
 
+    }
 
-  
-
-
-import {mapGetters} from 'vuex'
-
-export default {
-  created(){
-  
-  }
-  
-
-
-}
 </script>
 
 <!-- <v-flex text-xs-center>
@@ -39,4 +30,3 @@ export default {
     <span>Codepen</span>
   </v-tooltip>
 </v-flex> -->
-

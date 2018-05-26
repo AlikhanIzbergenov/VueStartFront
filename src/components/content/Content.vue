@@ -28,8 +28,6 @@
   >
   <app-header/>
   <app-navigation/>
-
-
     <v-content>
       <v-container fill-height>
         <v-layout justify-center align-center>
@@ -43,26 +41,32 @@
 </template>
 
 <script>
-import AppHeader from '../common/Header'
-import AppNavigation from '../common/navigation'
-import AppFooter from '../common/Footer'
+    import AppHeader from '../common/Header'
+    import AppNavigation from '../common/navigation'
+    import AppFooter from '../common/Footer'
 
 
 
-  export default {
+    export default {
 
-  components:{
-      AppHeader,
-      AppNavigation,
-      AppFooter
-},
-    data: () => ({
+        components: {
+            AppHeader,
+            AppNavigation,
+            AppFooter
+        },
+        data: () => ({
 
-    }),
-    props: {
-      source: String
+        }),
+        props: {
+            source: String
+        },
+        created() {
+            //var socket = io();
+            const socket = io('http://localhost:8081');
+
+        }
     }
-  }
+
 </script>
 
 <!--

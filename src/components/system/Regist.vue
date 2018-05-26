@@ -1,6 +1,7 @@
 <template>
     <div>
-    <h1>Registration</h1>  
+    <h1>Registration</h1> 
+    {{error}}
     <v-form ref="form" v-model="valid" lazy-validation >
       <v-text-field
         v-model="name"
@@ -58,64 +59,79 @@
 </template>
 
 <script>
-export default{
-    data: () => ({
-    valid: true,
-    name: '',
+    import auth from "@/services/auth";
+    export default {
+        data: () => ({
+            error: null,
+            valid: true,
+            name: '',
 
 
-    nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 20) || 'Name must be less than 20 characters'
-    ],
+            nameRules: [
+                v => !!v || 'Name is required',
+                v => (v && v.length <= 20) || 'Name must be less than 20 characters'
+            ],
 
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-    ],
-
-
-    visibilityPassword:false,
-    password: '',
-    passRules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length <= 10) || 'Password must be less than 10 characters'
-    ],
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+            ],
 
 
+            visibilityPassword: false,
+            password: '',
+            passRules: [
+                v => !!v || 'Password is required',
+                v => (v && v.length <= 10) || 'Password must be less than 10 characters'
+            ],
 
- 
-    
-    checkbox: false
-  }),
 
-  methods: {
-    submit () {
-      if (this.$refs.form.validate()) {
-        
-        axios.post('/api/submit', {
-          name: this.name,
-          email: this.email,
-          checkbox: this.checkbox
-        })
-      }
-    },
-    clear () {
-      this.$refs.form.reset()
+
+
+
+            checkbox: false
+        }),
+
+        methods: {
+            submit() {
+                if (this.$refs.form.validate()) {
+                    this.register()
+
+
+                }
+            },
+            async register() {
+                try {
+                    const res = await auth.register({
+                        "email": this.email,
+                        "user": this.name,
+                        "password": this.password
+
+                    })
+                    this.$router.push({
+                        name: "login"
+                    })
+
+
+                } catch (error) {
+                    this.error = error.response.data.error
+                }
+            },
+
+            clear() {
+                this.$refs.form.reset()
+            }
+        }
+
     }
-  }
 
-}
-    
 </script>
 
 <style>
-h1{
-    text-align:center;
-    padding:10px 10px 20px;
-}
+    h1 {
+        text-align: center;
+        padding: 10px 10px 20px;
+    }
 
-    
 </style>
-

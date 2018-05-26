@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const instance = axios.create({
-    baseURL:'https://VueBack/'
-});
 
-export default instance
-
+export default () => {
+    return axios.create({
+        baseURL: `http://localhost:8081/`,
+    })
+}

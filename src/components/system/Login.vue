@@ -4,15 +4,6 @@
         
     <v-form ref="form" v-model="valid" lazy-validation >
       <v-text-field
-        v-model="name"
-        :rules="nameRules"
-        :counter="20"
-        label="Name"
-        required
-      ></v-text-field>
-
-
-      <v-text-field
         v-model="email"
         :rules="emailRules"
         label="E-mail"
@@ -51,54 +42,58 @@
 </template>
 
 <script>
-export default{
-    data: () => ({
-    valid: true,
-    name: '',
+    import auth from "@/services/auth";
+    export default {
+        data: () => ({
+            valid: true,
+            err: null,
 
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+            ],
 
-    nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 20) || 'Name must be less than 20 characters'
-    ],
+            password: '',
+            passRules: [
+                v => !!v || 'Password is required',
+                v => (v && v.length <= 10) || 'Password must be less than 10 characters'
+            ],
 
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-    ],
+            checkbox: false
+        }),
 
-    password: '',
-    passRules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length <= 10) || 'Password must be less than 10 characters'
-    ],
-    
-    checkbox: false
-  }),
+        methods: {
+            submit() {
+                if (this.$refs.form.validate()) {
+                    this.login()
 
-  methods: {
-    submit () {
-      if (this.$refs.form.validate()) {
-        
-        axios.post('/api/submit', {
-          name: this.name,
-          email: this.email,
-          checkbox: this.checkbox
-        })
-      }
-    },
-    clear () {
-      this.$refs.form.reset()
+                }
+            },
+            async login() {
+                try {
+                    const login = await auth.login({
+                        "email": this.email,
+                        "password": this.password
+                    })
+                    this.$router.push({
+                        name: "register"
+                    })
+                } catch (err) {
+                    this.err = err
+
+                }
+            },
+            clear() {
+                this.$refs.form.reset()
+            }
+        }
+
     }
-  }
 
-}
-    
 </script>
 
 <style>
 
-    
-</style>
 
+</style>

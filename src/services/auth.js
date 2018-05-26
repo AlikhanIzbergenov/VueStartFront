@@ -1,17 +1,10 @@
-import Api from "./Api";
+import Api from '@/services/Api'
 
-
-function register(data){
-    Api.post("/system/login",data)
-    .then(function(response){
-        alert(response);
-    })
-    .catch(function(error){
-        alert(error)
-    })
-
-}
-
-export {
-    
+export default {
+    register(credentials) {
+        return Api().post('register', credentials)
+    },
+    login(credentials) {
+        return Api().post('login', credentials)
+    }
 }
