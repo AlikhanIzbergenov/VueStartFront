@@ -9,12 +9,12 @@ import 'vuetify/dist/vuetify.min.css'
 
 
 
+
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import {
     store
 } from './store'
-
 
 
 

@@ -7,30 +7,32 @@ Vue.use(Vuex)
 
 //start import all modules
 import settings from './settings'
+import socket from './socket'
 
 
 //end import all modules
 
 
-  export const store = new Vuex.Store({
+export const store = new Vuex.Store({
     namespaced: true,
-      modules:{
-        settings
+    modules: {
+        settings,
+        socket
 
-      },
-      state: {
-        drawer:false
-      },
-      getters:{
-        getDrawer(state){
-          return state.drawer;
+    },
+    state: {
+        drawer: false
+    },
+    getters: {
+        getDrawer(state) {
+            return state.drawer;
         },
-        
-      },
-      mutations: {
-        changeDrawer(state){
-          state.drawer = !state.drawer;
+
+    },
+    mutations: {
+        changeDrawer(state) {
+            state.drawer = !state.drawer;
         }
 
-      }
-    });
+    }
+});
