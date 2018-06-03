@@ -1,6 +1,4 @@
 # vuestart
-
-my vue start project
 Этот фронтенд часть проекта VueStart messenger
 написано на Vue Js
 
