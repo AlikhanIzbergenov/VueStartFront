@@ -1,6 +1,18 @@
 # vuestart
 
-> my vue start project
+my vue start project
+Этот фронтенд часть проекта VueStart messenger
+написано на Vue Js
+
+## Pages
+```pages
+/login - sign in 
+/register - registration
+/chat - chat 
+/dialog - post 
+/dialog/:username - dialogue with username 
+```
+
 
 ## Build Setup
 
@@ -23,5 +35,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
